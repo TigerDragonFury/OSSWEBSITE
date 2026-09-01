@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Sitemap: https://YOUR-DOMAIN.example/sitemap.xml
+Sitemap: https://www.offshoresupportservices.ae/sitemap.xml
