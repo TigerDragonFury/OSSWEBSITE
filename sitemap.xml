@@ -1,15 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://YOUR-DOMAIN.example/</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/about.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/services.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/projects.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/fleet.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/hse.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/gallery.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/contact.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/services/vessel-charter.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/services/ship-repair.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/services/fabrication.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/services/equipment-rental.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/services/container-refurbishment.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/services/scrap-surplus.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/projects/safeen-container-refurbishment.html</loc></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.offshoresupportservices.ae/</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/about.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/services.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/projects.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/fleet.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/hse.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/gallery.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/contact.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/services/vessel-charter.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/services/ship-repair.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/services/fabrication.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/services/equipment-rental.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/services/container-refurbishment.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/services/scrap-surplus.html</loc></url>
+  <url><loc>https://www.offshoresupportservices.ae/projects/safeen-container-refurbishment.html</loc></url>
+</urlset>
