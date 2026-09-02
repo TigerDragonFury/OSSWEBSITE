@@ -32,3 +32,6 @@ body:not(.home-v3):not(.admin-body){background:#f7f8f5;color:#152c37}body:not(.h
 
 /* One site, one call-to-action: the same MARCAP-inspired amber Enquire button everywhere. */
 .home-v3 .header-cta,body:not(.home-v3):not(.admin-body) .header-cta{background:#f5a623!important;border-color:#f5a623!important;color:#09202e!important;font-weight:800}
+
+/* Sister-company reference pass: cinematic full-bleed sections, sparse editorial type and image-first service discovery. */
+.oss-hero__content{animation:oss-rise .8s ease-out both}.oss-solution{min-height:560px}.oss-story__grid{max-width:1120px}.oss-method__content{min-height:720px}@keyframes oss-rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}@media(max-width:640px){.oss-solution{min-height:480px}.oss-method__content{min-height:0}.oss-hero__content{animation:none}}
