@@ -2,6 +2,12 @@
   const body = document.body;
   const menu = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.nav');
+  const navLabels = { 'index.html': 'Home', 'about.html': 'Company', 'services.html': 'Solutions', 'projects.html': 'Projects', 'fleet.html': 'Fleet', 'hse.html': 'HSE', 'gallery.html': 'Gallery', 'contact.html': 'Contact' };
+  nav?.querySelectorAll('a').forEach((link) => {
+    const target = link.getAttribute('href')?.split('/').pop()?.split('#')[0];
+    if (target && navLabels[target]) link.textContent = navLabels[target];
+  });
+  document.querySelectorAll('.header-cta').forEach((link) => { link.textContent = 'Enquire'; });
   const closeMenu = () => { nav?.classList.remove('open'); body.classList.remove('menu-open'); menu?.setAttribute('aria-expanded', 'false'); menu?.setAttribute('aria-label', 'Open navigation'); };
   menu?.addEventListener('click', () => { const open = !nav.classList.contains('open'); nav.classList.toggle('open', open); body.classList.toggle('menu-open', open); menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); });
   nav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
