@@ -1,4 +1,12 @@
 (() => {
+  const sharedHeader = document.querySelector('.site-header .header-inner');
+  if (sharedHeader) {
+    const nested = /\/(services|projects)\//.test(location.pathname);
+    const base = nested ? '../' : '';
+    const current = location.pathname.split('/').pop() || 'index.html';
+    const links = [['index.html','Home'],['about.html','Company'],['services.html','Solutions'],['projects.html','Projects'],['fleet.html','Fleet'],['hse.html','HSE'],['gallery.html','Gallery'],['contact.html','Contact']];
+    sharedHeader.innerHTML = `<a class="brand" href="${base}index.html" aria-label="OSS Marine home"><img src="${base}assets/oss-logo.png" alt="OSS Offshore Support Services"></a><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button><nav class="nav" id="primary-nav" aria-label="Primary navigation">${links.map(([path,label]) => `<a class="${current === path ? 'active' : ''}" href="${base}${path}">${label}</a>`).join('')}</nav><div class="header-actions"><a class="header-phone" href="tel:+971502606292">+971 50 260 6292</a><a class="header-cta" href="${base}contact.html#rfq">Enquire</a></div>`;
+  }
   const body = document.body;
   const menu = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.nav');
