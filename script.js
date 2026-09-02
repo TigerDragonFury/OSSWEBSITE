@@ -1,4 +1,5 @@
 (() => {
+  document.body.classList.add('marcap-shell');
   const sharedHeader = document.querySelector('.site-header .header-inner');
   if (sharedHeader) {
     const nested = /\/(services|projects)\//.test(location.pathname);
