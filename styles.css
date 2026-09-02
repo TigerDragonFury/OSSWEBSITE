@@ -19,3 +19,14 @@
 .mc-story-card.is-changing .mc-story-copy,.mc-story-card.is-changing .mc-story-image img{opacity:.15}
 @media(max-width:800px){.mc-service-track{width:max-content;min-width:0}.mc-service-card{flex:0 0 220px;min-width:220px}}
 @media(max-width:560px){.mc-service-card{flex-basis:185px;min-width:185px}.mc-tabs button{font-size:15px;text-align:center}}
+
+/* Exact MARCAP service-carousel proportions */
+@media(min-width:801px){
+  .mc-service-overlap{margin-top:-155px;padding-left:0;overflow:visible}
+  .mc-service-track{width:min(1240px,calc(100% - 48px));min-width:0;margin:0 auto;gap:16px;align-items:flex-start}
+  .mc-service-card{flex:1 1 0;min-width:0;width:auto;height:174px;border-radius:20px;padding:30px 20px 18px}
+  .mc-service-card:first-child{flex:1.15 1 0;height:242px;margin-top:-68px;border-radius:20px;padding:36px 20px 18px}
+  .mc-service-card h3{font-size:20px;line-height:1.2}
+  .mc-service-card:first-child h3{font-size:28px;line-height:1.2}
+  .mc-service-card .mc-arrow{width:34px;height:34px;font-size:16px}
+}
