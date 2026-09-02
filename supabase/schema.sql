@@ -64,3 +64,23 @@ end $$;
 insert into public.website_projects(title,category,summary,sort_order,published)
 values ('Offshore Container Refurbishment','Refurbishment','Sa 2.5 blasting, structural repair, MPI, proof-load testing and certification support.',10,true)
 on conflict do nothing;
+
+-- Indexes used by the website and administration dashboard.
+create index if not exists website_inquiries_created_at_idx on public.website_inquiries(created_at desc);
+create index if not exists website_inquiries_status_idx on public.website_inquiries(status);
+create index if not exists website_projects_sort_idx on public.website_projects(published,sort_order);
+create index if not exists website_gallery_sort_idx on public.website_gallery(published,sort_order);
+create index if not exists website_equipment_sort_idx on public.website_equipment(published,sort_order);
+create index if not exists website_services_sort_idx on public.website_services(published,sort_order);
+
+create or replace function public.set_website_updated_at() returns trigger
+language plpgsql set search_path = public as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+drop trigger if exists website_projects_updated_at on public.website_projects;
+create trigger website_projects_updated_at before update on public.website_projects
+for each row execute function public.set_website_updated_at();

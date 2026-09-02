@@ -15,7 +15,9 @@ Complete responsive multi-page static website with optional Supabase CMS/admin i
 - Mobile navigation and fixed mobile Call / Request Quote actions
 - Supabase RFQ storage
 - Supabase-ready Projects, Gallery, Equipment and Services tables
-- Basic admin dashboard under `/admin/`
+- Responsive administration control centre under `/admin/`
+- Enquiry search, filters, status workflow, details and CSV export
+- Project, gallery, equipment and service content editors
 - `supabase/schema.sql`
 
 ## Supabase setup
