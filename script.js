@@ -1,5 +1,9 @@
 (() => {
   document.body.classList.add('marcap-shell');
+  const pageName = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
+  if (['about', 'services', 'projects', 'fleet', 'hse', 'gallery', 'contact'].includes(pageName)) {
+    document.body.classList.add('ref-inner-page', `ref-${pageName}`);
+  }
   const sharedHeader = document.querySelector('.site-header .header-inner');
   if (sharedHeader) {
     const nested = /\/(services|projects)\//.test(location.pathname);
