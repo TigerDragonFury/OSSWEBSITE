@@ -36,15 +36,24 @@
   html,body{max-width:100%;overflow-x:hidden}
   .site-header{top:10px}
   .site-header.fixed{top:0;background:transparent;backdrop-filter:none}
-  .mc-header{width:calc(100% - 20px);min-height:64px;grid-template-columns:1fr 44px;gap:8px;padding:7px 8px 7px 14px;border-radius:24px;background:rgba(255,255,255,.94);box-shadow:0 8px 28px rgba(19,63,94,.12);backdrop-filter:blur(14px)}
+  .mc-header{width:calc(100% - 20px);min-height:64px;grid-template-columns:1fr 44px;gap:8px;padding:7px 8px 7px 14px;border-radius:24px;background:rgba(255,255,255,.96);box-shadow:0 8px 28px rgba(19,63,94,.12);backdrop-filter:none}
   .mc-logo{width:118px}
-  .mc-menu{position:relative;z-index:3;width:44px;height:44px;padding:10px}
+  .mc-menu{position:relative;z-index:3;width:44px;height:44px;padding:10px;transition:background .2s}
   .mc-menu i{margin:4px}
-  .mc-nav-shell{z-index:2;padding:105px 28px 40px}
+  .mc-nav-shell{position:fixed;z-index:2;inset:0;width:100vw;height:100vh;height:100dvh;padding:100px 28px 40px;background:var(--nav);border-radius:0;overflow-y:auto;visibility:hidden;pointer-events:none;opacity:0;transform:translateX(100%);transition:transform .28s ease,opacity .2s ease,visibility 0s linear .28s}
+  .mc-nav-shell.open{visibility:visible;pointer-events:auto;opacity:1;transform:translateX(0);transition:transform .28s ease,opacity .2s ease}
+  .mc-nav{gap:0}
+  .mc-nav a{display:flex;align-items:center;min-height:58px;padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.18);color:#fff;font-size:30px}
+  .mc-nav a.active{color:#fff}
+  body.menu-open .mc-menu{background:var(--red)}
+  body.menu-open .mc-menu i{position:absolute;left:10px;right:10px;top:20px;margin:0;transition:transform .2s,opacity .2s}
+  body.menu-open .mc-menu i:first-child{transform:rotate(45deg)}
+  body.menu-open .mc-menu i:nth-child(2){opacity:0}
+  body.menu-open .mc-menu i:last-child{transform:rotate(-45deg)}
 
   .mc-hero{height:720px;min-height:0}
   .mc-hero-bg:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(220,239,250,.82) 0%,rgba(220,239,250,.48) 46%,rgba(220,239,250,0) 76%);pointer-events:none}
-  .mc-hero-bg img{object-position:52% center}
+  .mc-hero-bg img{object-position:62% center}
   .mc-hero-copy{width:calc(100% - 40px);padding-top:145px}
   .mc-hero h1{max-width:420px;margin-bottom:26px;font-size:clamp(40px,7.4vw,46px);line-height:1.06}
   .mc-hero p{max-width:370px;padding:11px 13px;margin-left:-13px;border-radius:14px;background:rgba(237,247,253,.66);font-size:clamp(18px,3.4vw,21px);line-height:1.38;backdrop-filter:blur(3px)}
@@ -65,7 +74,7 @@
   .mc-header{min-height:60px;border-radius:21px}
   .mc-logo{width:108px}
   .mc-hero{height:680px}
-  .mc-hero-bg img{object-position:50% center}
+  .mc-hero-bg img{object-position:64% center}
   .mc-hero-copy{width:calc(100% - 32px);padding-top:125px}
   .mc-hero h1{max-width:350px;font-size:clamp(36px,10.5vw,42px)}
   .mc-hero p{max-width:315px;font-size:18px}
