@@ -36,7 +36,7 @@
     const target=document.querySelector('[data-cms-equipment]');if(target&&equipment.length)target.innerHTML=equipment.map((item,index)=>`<article class="mc-equipment-card"><img src="${esc(safeImage(item.image_url,'/assets/images/equipment-rental.webp'))}" alt="${esc(item.name)}"><div><small>${String(index+1).padStart(2,'0')} · ${esc(item.category||'Heavy equipment')}</small><h3>${esc(item.name)}</h3><p>${esc(item.summary||item.availability_note||'Contact OSS for availability.')}</p><a class="mc-btn" href="contact.html?interest=${encodeURIComponent(item.name)}#rfq">Request availability →</a></div></article>`).join('');
   }
   async function hydrateStore(){
-    const records=await request('website_store_items');
+    let records=[];try{records=await request('website_store_items')}catch(error){records=[]}
     const store=document.querySelector('[data-cms-store]');if(store){if(records.length)store.innerHTML=records.map(storeCard).join('');const buttons=[...document.querySelectorAll('[data-store-filter]')];buttons.forEach(button=>button.addEventListener('click',()=>{buttons.forEach(x=>x.classList.toggle('active',x===button));const kind=button.dataset.storeFilter;store.querySelectorAll('[data-store-kind]').forEach(card=>card.hidden=kind!=='all'&&card.dataset.storeKind!==kind)}))}
     if(!records.length)return;
     const featured=document.querySelector('[data-cms-featured-store]');if(featured){const picks=records.filter(item=>item.featured).slice(0,3);if(picks.length)featured.innerHTML=picks.map(storeCard).join('')}
