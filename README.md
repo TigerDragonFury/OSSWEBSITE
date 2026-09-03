@@ -23,10 +23,11 @@ Complete responsive multi-page static website with optional Supabase CMS/admin i
 ## Supabase setup
 1. Create a free Supabase project.
 2. Run `supabase/schema.sql` in the SQL Editor.
-3. Add the project URL and **anon/publishable key only** to `config.js`. Never put the service-role key in browser code.
-4. Create an Auth user for the website administrator.
-5. Assign that user's app metadata `role=admin` through a secure admin/server process.
-6. Open `/admin/` and sign in.
+3. When sharing the Supabase project with the OSS ERP, run `supabase/erp-website-integration.sql` to protect ERP tables and enable approved publication from ERP records.
+4. Add the project URL and **anon/publishable key only** to `config.js`. Never put the service-role key in browser code.
+5. Create an Auth user for the website administrator.
+6. Assign that user's app metadata `role=admin` through a secure admin/server process.
+7. Open `/admin/` and sign in.
 
 ## Hosting
 This site is static and can be deployed to Cloudflare Pages, Vercel, Netlify, GitHub Pages, or any normal static host.
