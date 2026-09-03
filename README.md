@@ -20,6 +20,8 @@ Complete responsive multi-page static website with optional Supabase CMS/admin i
 - Enquiry search, filters, status workflow, details and CSV export
 - ERP-backed project, vessel, heavy-equipment and store publishing
 - Gallery image picker and Supabase media uploads
+- Collapsible product descriptions, persistent shopping cart and Stripe-hosted checkout
+- Store order and fulfillment management in the administration control centre
 - `supabase/schema.sql`
 
 ## Supabase setup
@@ -27,10 +29,25 @@ Complete responsive multi-page static website with optional Supabase CMS/admin i
 2. Run `supabase/schema.sql` in the SQL Editor.
 3. When sharing the Supabase project with the OSS ERP, run `supabase/erp-website-integration.sql` to protect ERP tables and enable approved publication from ERP records.
 4. Run `supabase/commerce-upgrade.sql` to add the public store projection, image storage and inventory publishing access.
-5. Add the project URL and **anon/publishable key only** to `config.js`. Never put the service-role key in browser code.
-6. Create an Auth user for the website administrator.
-7. Assign that user's app metadata `role=admin` through a secure admin/server process.
-8. Open `/admin/` and sign in.
+5. Run `supabase/commerce-checkout.sql` to add purchasable listings, orders and order items.
+6. Add the project URL and **anon/publishable key only** to `config.js`. Never put the service-role key in browser code.
+7. Create an Auth user for the website administrator.
+8. Assign that user's app metadata `role=admin` through a secure admin/server process.
+9. Open `/admin/` and sign in.
+
+## Online payments
+
+Checkout uses Stripe's hosted payment page. Add these server-only environment variables to the Vercel project for Production, Preview and Development as required:
+
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `SITE_URL` (set to `https://www.offshoresupportservices.ae` in production)
+
+Create a Stripe webhook pointing to `https://www.offshoresupportservices.ae/api/stripe-webhook` and subscribe it to `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed` and `checkout.session.expired`.
+
+In Admin → Store, enter a positive price and stock quantity, then enable **Add to Cart and online payment** for products that can be bought online. Leave it disabled for quote-only vessels and equipment.
 
 ## Hosting
 This site is static and can be deployed to Cloudflare Pages, Vercel, Netlify, GitHub Pages, or any normal static host.
