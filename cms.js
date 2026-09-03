@@ -12,6 +12,8 @@
   const serviceHref=slug=>['vessel-charter','ship-repair','fabrication','equipment-rental','container-refurbishment','scrap-surplus'].includes(slug)?`services/${slug}.html`:'contact.html#rfq';
   const fleetImages=['/assets/images/fleet-vessel-01.webp','/assets/images/fleet-vessel-02.webp','/assets/images/fleet-vessel-03.webp','/assets/images/fleet-vessel-04.webp'];
   const isVessel=item=>/vessel|tug|barge|boat|craft|ship|marine/i.test(`${item.category||''} ${item.name||''}`);
+  const itemTypeLabel=value=>({vessel:'Vessel',equipment:'Heavy equipment',inventory:'Marine spares'}[value]||'Marine equipment');
+  const storeCard=item=>{const price=item.price_amount?new Intl.NumberFormat('en-AE',{style:'currency',currency:item.currency||'AED',maximumFractionDigits:0}).format(item.price_amount):item.price_label||'Price on request',href=`contact.html?interest=${encodeURIComponent(item.title)}#rfq`;return `<article class="mc-store-card" data-store-kind="${esc(item.item_type)}"><a class="mc-store-image" href="${esc(href)}"><img src="${esc(safeImage(item.image_url,item.item_type==='vessel'?'/assets/images/fleet-vessel-02.webp':'/assets/images/equipment-rental.webp'))}" alt="${esc(item.title)}"><span>${esc(itemTypeLabel(item.item_type))}</span></a><div class="mc-store-copy"><small>${esc(item.category||itemTypeLabel(item.item_type))}</small><h3>${esc(item.title)}</h3><p>${esc(item.summary||'Contact OSS for specifications and availability.')}</p><div class="mc-store-meta"><span>${esc(item.condition||'Available')}</span>${item.location?`<span>${esc(item.location)}</span>`:''}</div><strong class="mc-store-price">${esc(price)}</strong><a class="mc-btn red" href="${esc(href)}">Enquire →</a></div></article>`};
 
   async function hydrateServices(){
     const records=await request('website_services');if(!records.length)return;
@@ -29,16 +31,23 @@
     target.innerHTML=records.map(item=>`<article class="mc-gallery-item"><img src="${esc(safeImage(item.image_url,'/assets/images/marine-logistics.webp'))}" alt="${esc(item.caption||'OSS Marine operation')}"><div><small>Operations</small><h3>${esc(item.caption||'OSS Marine')}</h3></div></article>`).join('');
   }
   async function hydrateEquipment(){
-    const records=await request('website_equipment');if(!records.length)return;const vessels=records.filter(isVessel),equipment=records.filter(item=>!isVessel(item));
-    document.querySelectorAll('[data-cms-vessels]').forEach(target=>{if(!vessels.length)return;const lead=target.querySelector('.mc-fleet-lead')?'<div class="mc-fleet-lead">ERP fleet records approved for public display.</div>':'';target.innerHTML=lead+vessels.slice(0,4).map((item,index)=>`<a class="mc-fleet-card" href="contact.html#rfq"><img src="${fleetImages[index%fleetImages.length]}" alt=""><span>${esc(item.name)}${item.category?` · ${esc(item.category)}`:''}</span></a>`).join('')});
-    const target=document.querySelector('[data-cms-equipment]');if(target&&equipment.length)target.innerHTML=equipment.map((item,index)=>`<article class="mc-card"><small>${String(index+1).padStart(2,'0')}</small><h3>${esc(item.name)}</h3><p>${esc(item.summary||item.availability_note||'Contact OSS for availability.')}</p></article>`).join('');
+    const records=await request('website_equipment');if(!records.length)return;const vessels=records.filter(item=>item.source_kind==='vessel'||(!item.source_kind&&isVessel(item))),equipment=records.filter(item=>!vessels.includes(item));
+    document.querySelectorAll('[data-cms-vessels]').forEach(target=>{if(!vessels.length)return;const lead=target.querySelector('.mc-fleet-lead')?'<div class="mc-fleet-lead">ERP vessels approved for public display.</div>':'';target.innerHTML=lead+vessels.slice(0,4).map((item,index)=>`<a class="mc-fleet-card" href="contact.html?interest=${encodeURIComponent(item.name)}#rfq"><img src="${esc(safeImage(item.image_url,fleetImages[index%fleetImages.length]))}" alt="${esc(item.name)}"><span>${esc(item.name)}${item.category?` · ${esc(item.category)}`:''}</span></a>`).join('')});
+    const target=document.querySelector('[data-cms-equipment]');if(target&&equipment.length)target.innerHTML=equipment.map((item,index)=>`<article class="mc-equipment-card"><img src="${esc(safeImage(item.image_url,'/assets/images/equipment-rental.webp'))}" alt="${esc(item.name)}"><div><small>${String(index+1).padStart(2,'0')} · ${esc(item.category||'Heavy equipment')}</small><h3>${esc(item.name)}</h3><p>${esc(item.summary||item.availability_note||'Contact OSS for availability.')}</p><a class="mc-btn" href="contact.html?interest=${encodeURIComponent(item.name)}#rfq">Request availability →</a></div></article>`).join('');
+  }
+  async function hydrateStore(){
+    const records=await request('website_store_items');
+    const store=document.querySelector('[data-cms-store]');if(store){if(records.length)store.innerHTML=records.map(storeCard).join('');const buttons=[...document.querySelectorAll('[data-store-filter]')];buttons.forEach(button=>button.addEventListener('click',()=>{buttons.forEach(x=>x.classList.toggle('active',x===button));const kind=button.dataset.storeFilter;store.querySelectorAll('[data-store-kind]').forEach(card=>card.hidden=kind!=='all'&&card.dataset.storeKind!==kind)}))}
+    if(!records.length)return;
+    const featured=document.querySelector('[data-cms-featured-store]');if(featured){const picks=records.filter(item=>item.featured).slice(0,3);if(picks.length)featured.innerHTML=picks.map(storeCard).join('')}
   }
 
   const jobs=[];
-  if(page==='index.html')jobs.push(hydrateServices(),hydrateEquipment());
+  if(page==='index.html')jobs.push(hydrateServices(),hydrateEquipment(),hydrateStore());
   if(page==='services.html')jobs.push(hydrateServices());
   if(page==='projects.html')jobs.push(hydrateProjects());
   if(page==='gallery.html')jobs.push(hydrateGallery());
   if(page==='fleet.html')jobs.push(hydrateEquipment());
+  if(page==='store.html')jobs.push(hydrateStore());
   Promise.allSettled(jobs).then(()=>document.documentElement.dataset.cms='ready');
 })();

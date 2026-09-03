@@ -8,6 +8,7 @@ Complete responsive multi-page static website with optional Supabase CMS/admin i
 - Services overview + 6 individual service pages
 - Projects + container refurbishment case study
 - Fleet & Equipment
+- Marine Store for vessels, heavy equipment, inventory and spares
 - HSE & Quality
 - Gallery
 - Contact / RFQ
@@ -17,17 +18,19 @@ Complete responsive multi-page static website with optional Supabase CMS/admin i
 - Supabase-ready Projects, Gallery, Equipment and Services tables
 - Responsive administration control centre under `/admin/`
 - Enquiry search, filters, status workflow, details and CSV export
-- Project, gallery, equipment and service content editors
+- ERP-backed project, vessel, heavy-equipment and store publishing
+- Gallery image picker and Supabase media uploads
 - `supabase/schema.sql`
 
 ## Supabase setup
 1. Create a free Supabase project.
 2. Run `supabase/schema.sql` in the SQL Editor.
 3. When sharing the Supabase project with the OSS ERP, run `supabase/erp-website-integration.sql` to protect ERP tables and enable approved publication from ERP records.
-4. Add the project URL and **anon/publishable key only** to `config.js`. Never put the service-role key in browser code.
-5. Create an Auth user for the website administrator.
-6. Assign that user's app metadata `role=admin` through a secure admin/server process.
-7. Open `/admin/` and sign in.
+4. Run `supabase/commerce-upgrade.sql` to add the public store projection, image storage and inventory publishing access.
+5. Add the project URL and **anon/publishable key only** to `config.js`. Never put the service-role key in browser code.
+6. Create an Auth user for the website administrator.
+7. Assign that user's app metadata `role=admin` through a secure admin/server process.
+8. Open `/admin/` and sign in.
 
 ## Hosting
 This site is static and can be deployed to Cloudflare Pages, Vercel, Netlify, GitHub Pages, or any normal static host.

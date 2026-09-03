@@ -32,10 +32,18 @@ create table if not exists public.website_gallery (
   id uuid primary key default gen_random_uuid(), created_at timestamptz not null default now(), caption text, image_url text not null, sort_order int not null default 0, published boolean not null default false
 );
 create table if not exists public.website_equipment (
-  id uuid primary key default gen_random_uuid(), created_at timestamptz not null default now(), name text not null, category text, summary text, availability_note text, sort_order int not null default 0, published boolean not null default false
+  id uuid primary key default gen_random_uuid(), created_at timestamptz not null default now(), name text not null, category text, summary text, availability_note text, source_kind text not null default 'asset', image_url text, sort_order int not null default 0, published boolean not null default false
 );
 create table if not exists public.website_services (
   id uuid primary key default gen_random_uuid(), created_at timestamptz not null default now(), slug text unique not null, name text not null, summary text, body text, sort_order int not null default 0, published boolean not null default false
+);
+create table if not exists public.website_store_items (
+  id uuid primary key default gen_random_uuid(), created_at timestamptz not null default now(), updated_at timestamptz not null default now(),
+  source_id text not null, source_table text not null check (source_table in ('vessels','assets','inventory_items')),
+  item_type text not null check (item_type in ('vessel','equipment','inventory')), title text not null, category text, summary text,
+  image_url text, condition text, location text, price_amount numeric(15,2), currency text not null default 'AED',
+  price_label text default 'Price on request', stock_quantity numeric, featured boolean not null default false,
+  published boolean not null default false, sort_order int not null default 0, unique(source_table,source_id)
 );
 
 alter table public.website_inquiries enable row level security;
@@ -43,6 +51,7 @@ alter table public.website_projects enable row level security;
 alter table public.website_gallery enable row level security;
 alter table public.website_equipment enable row level security;
 alter table public.website_services enable row level security;
+alter table public.website_store_items enable row level security;
 
 -- Public can submit inquiries but cannot read them.
 drop policy if exists "public_insert_inquiries" on public.website_inquiries;
@@ -52,7 +61,7 @@ create policy "admin_manage_inquiries" on public.website_inquiries for all to au
 
 -- Public website can read published content; admins can manage all content.
 do $$ declare t text; begin
-  foreach t in array array['website_projects','website_gallery','website_equipment','website_services'] loop
+  foreach t in array array['website_projects','website_gallery','website_equipment','website_services','website_store_items'] loop
     execute format('drop policy if exists "public_read_published" on public.%I',t);
     execute format('create policy "public_read_published" on public.%I for select to anon,authenticated using (published = true or public.is_website_admin())',t);
     execute format('drop policy if exists "admin_manage" on public.%I',t);
@@ -72,6 +81,7 @@ create index if not exists website_projects_sort_idx on public.website_projects(
 create index if not exists website_gallery_sort_idx on public.website_gallery(published,sort_order);
 create index if not exists website_equipment_sort_idx on public.website_equipment(published,sort_order);
 create index if not exists website_services_sort_idx on public.website_services(published,sort_order);
+create index if not exists website_store_items_public_idx on public.website_store_items(published,featured,sort_order);
 
 create or replace function public.set_website_updated_at() returns trigger
 language plpgsql set search_path = public as $$
