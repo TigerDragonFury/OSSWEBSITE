@@ -17,6 +17,7 @@
     const currencies=[...new Set(cart.map(item=>item.currency))],total=cart.reduce((sum,item)=>sum+item.price*item.quantity,0);document.querySelector('[data-cart-total]').textContent=currencies.length===1?money(total,currencies[0]):'Separate checkout required';document.querySelector('[data-cart-checkout]').disabled=currencies.length!==1;
   };
   document.addEventListener('click',event=>{
+    const railControl=event.target.closest('[data-store-scroll]');if(railControl){const rail=document.querySelector('[data-cms-featured-store]'),card=rail?.querySelector('.mc-store-card,.mc-commerce-tile'),step=(card?.getBoundingClientRect().width||340)+18;rail?.scrollBy({left:railControl.dataset.storeScroll==='next'?step:-step,behavior:'smooth'});return}
     const add=event.target.closest('[data-cart-add]');if(add){const id=add.dataset.cartAdd,existing=cart.find(item=>item.id===id),max=Math.max(1,Number(add.dataset.cartMax)||10);if(existing)existing.quantity=Math.min(max,existing.quantity+1);else cart.push({id,title:add.dataset.cartTitle,price:Number(add.dataset.cartPrice),currency:add.dataset.cartCurrency,image:add.dataset.cartImage,max,quantity:1});message.textContent='Added to cart.';save();open();return}
     if(event.target.closest('[data-cart-open]')){open();return}if(event.target.closest('[data-cart-close]')){close();return}
     const plus=event.target.closest('[data-cart-plus]'),minus=event.target.closest('[data-cart-minus]'),remove=event.target.closest('[data-cart-remove]');

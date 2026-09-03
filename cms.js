@@ -44,7 +44,7 @@
     let records=[];try{records=await request('website_store_items')}catch(error){records=[]}
     const store=document.querySelector('[data-cms-store]');if(store){if(records.length)store.innerHTML=records.map(storeCard).join('');const buttons=[...document.querySelectorAll('[data-store-filter]')];buttons.forEach(button=>button.addEventListener('click',()=>{buttons.forEach(x=>x.classList.toggle('active',x===button));const kind=button.dataset.storeFilter;store.querySelectorAll('[data-store-kind]').forEach(card=>card.hidden=kind!=='all'&&card.dataset.storeKind!==kind)}))}
     if(!records.length)return;
-    const featured=document.querySelector('[data-cms-featured-store]');if(featured){const picks=records.filter(item=>item.featured).slice(0,3);if(picks.length)featured.innerHTML=picks.map(storeCard).join('')}
+    const featured=document.querySelector('[data-cms-featured-store]');if(featured){const picks=records.filter(item=>item.featured).slice(0,10);if(picks.length)featured.innerHTML=picks.map(storeCard).join('')}
   }
 
   const jobs=[];
