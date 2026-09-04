@@ -150,3 +150,37 @@
 @media(max-width:1000px){.mc-shop-layout{grid-template-columns:220px minmax(0,1fr);gap:20px}.mc-shop-results .mc-store-grid{grid-template-columns:1fr}[data-catalogue-view="list"] .mc-store-card{grid-template-columns:240px minmax(0,1fr)}[data-catalogue-view="list"] .mc-store-copy{display:block}[data-catalogue-view="list"] .mc-store-meta,[data-catalogue-view="list"] .mc-store-price,[data-catalogue-view="list"] .mc-store-actions{min-width:0}}
 @media(max-width:800px){.mc-cart-trigger{display:none}.mc-mobile-cart-trigger{position:fixed;z-index:889;top:22px;right:76px;display:grid;width:40px;height:40px;min-height:40px;border-radius:10px;background:#fff}.mc-mobile-cart-trigger b{top:-7px;right:-7px}.mc-shop-toolbar{position:relative;grid-template-columns:1fr auto auto}.mc-shop-search{grid-column:1/-1}.mc-filter-toggle{display:block}.mc-shop-layout{display:block}.mc-shop-filters{position:fixed;z-index:1002;top:0;left:0;width:min(360px,88vw);height:100vh;height:100dvh;overflow-y:auto;border:0;border-radius:0 24px 24px 0;padding:26px;transform:translateX(-105%);transition:transform .25s;box-shadow:20px 0 55px rgba(3,33,52,.18)}.mc-shop-filters.open{transform:none}.mc-filter-head button{display:block}.mc-filter-backdrop{position:fixed;z-index:1001;inset:0;background:rgba(3,33,52,.56)}body.filters-open{overflow:hidden}.mc-shop-results .mc-store-grid{grid-template-columns:repeat(2,minmax(0,1fr))}[data-catalogue-view="list"] .mc-store-card{grid-template-columns:210px minmax(0,1fr)}[data-catalogue-view="list"] .mc-store-image{min-height:280px}.mc-results-bar{align-items:end}.mc-results-bar label{display:grid;gap:6px}.mc-results-bar select{min-width:160px}}
 @media(max-width:620px){.mc-shop-results .mc-store-grid{grid-template-columns:1fr}.mc-shop-toolbar{grid-template-columns:1fr auto}.mc-filter-toggle{grid-column:1}.mc-view-options{grid-column:2}.mc-results-bar{align-items:start;flex-direction:column}.mc-results-bar label,.mc-results-bar select{width:100%}[data-catalogue-view="list"] .mc-store-card{display:block}[data-catalogue-view="list"] .mc-store-image{height:220px;min-height:0}.mc-store-card{border-radius:22px}.mc-store-copy{padding:21px}.mc-store-copy h3{font-size:25px}}
+
+.mc-cart-add{display:inline-flex;align-items:center;justify-content:center;gap:7px}.mc-cart-add-icon{display:grid;place-items:center}.mc-cart-add-icon svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:620px){
+  .mc-shop-results [data-catalogue-view="grid"]{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-card{min-width:0;border-radius:14px}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-image{height:105px}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-image span{top:6px;left:6px;max-width:calc(100% - 12px);overflow:hidden;padding:4px 6px;font-size:8px;white-space:nowrap;text-overflow:ellipsis}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-copy{padding:10px}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-copy>small{display:block;overflow:hidden;font-size:8px;white-space:nowrap;text-overflow:ellipsis}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-copy h3{display:-webkit-box;min-height:34px;margin:5px 0 8px;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-size:14px;line-height:1.18}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-spec{overflow:hidden;margin:0 0 7px!important;font-size:9px!important;white-space:nowrap;text-overflow:ellipsis}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-excerpt,.mc-shop-results [data-catalogue-view="grid"] .mc-store-description,.mc-shop-results [data-catalogue-view="grid"] .mc-store-meta{display:none}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-price{min-height:30px;margin:0 0 8px;font-size:13px;line-height:1.15}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-actions{display:grid;gap:5px}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-actions .mc-btn{width:100%;min-height:34px;padding:4px 6px;font-size:10px}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-store-actions .mc-btn.red+.mc-btn{display:none}
+  .mc-shop-results [data-catalogue-view="grid"] .mc-cart-add-icon svg{width:13px;height:13px}
+
+  .mc-shop-results [data-catalogue-view="list"]{gap:9px}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-card{display:grid;grid-template-columns:86px minmax(0,1fr);min-height:118px;border-radius:14px}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-image{width:86px;height:100%;min-height:118px}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-image span{top:6px;left:6px;max-width:74px;overflow:hidden;padding:4px 6px;font-size:8px;white-space:nowrap;text-overflow:ellipsis}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-copy{display:grid;grid-template-columns:minmax(0,1fr) 58px;grid-template-rows:auto auto auto 1fr auto;gap:3px 8px;min-width:0;padding:11px}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-copy>small{display:none}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-copy h3{grid-column:1;grid-row:1;display:-webkit-box;margin:0;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-size:14px;line-height:1.18}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-spec{grid-column:1;grid-row:2;overflow:hidden;margin:0!important;font-size:9px!important;white-space:nowrap;text-overflow:ellipsis}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-excerpt{grid-column:1;grid-row:3;display:-webkit-box;margin:2px 0 0;font-size:10px;line-height:1.25;-webkit-line-clamp:2}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-description,.mc-shop-results [data-catalogue-view="list"] .mc-store-meta{display:none}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-price{grid-column:1;grid-row:5;min-width:0;margin:4px 0 0;font-size:12px}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-actions{grid-column:2;grid-row:1/6;display:flex;min-width:0;align-items:center;justify-content:center}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-actions .mc-btn{width:58px;min-width:0;min-height:55px;flex:0 0 58px;flex-direction:column;gap:4px;border-radius:12px;padding:6px 4px;font-size:10px;line-height:1.05;text-align:center}
+  .mc-shop-results [data-catalogue-view="list"] .mc-store-actions .mc-btn.red+.mc-btn{display:none}
+  .mc-shop-results [data-catalogue-view="list"] .mc-cart-add-icon svg{width:18px;height:18px}
+}
