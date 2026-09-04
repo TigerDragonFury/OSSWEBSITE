@@ -30,10 +30,13 @@ Complete responsive multi-page static website with optional Supabase CMS/admin i
 3. When sharing the Supabase project with the OSS ERP, run `supabase/erp-website-integration.sql` to protect ERP tables and enable approved publication from ERP records.
 4. Run `supabase/commerce-upgrade.sql` to add the public store projection, image storage and inventory publishing access.
 5. Run `supabase/commerce-checkout.sql` to add purchasable listings, orders and order items.
-6. Add the project URL and **anon/publishable key only** to `config.js`. Never put the service-role key in browser code.
-7. Create an Auth user for the website administrator.
-8. Assign that user's app metadata `role=admin` through a secure admin/server process.
-9. Open `/admin/` and sign in.
+6. Run `supabase/store-catalog-upgrade.sql` to add Make, Model and Model Year catalogue fields and filter indexes.
+7. Add the project URL and **anon/publishable key only** to `config.js`. Never put the service-role key in browser code.
+8. Create an Auth user for the website administrator.
+9. Assign that user's app metadata `role=admin` through a secure admin/server process.
+10. Open `/admin/` and sign in.
+
+The public Store automatically builds its Product Type, Category, Make, Model, Condition and Availability filters from published listings. Admin → Store can populate Make, Model and Model Year after step 6 is complete.
 
 ## Online payments
 

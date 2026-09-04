@@ -40,7 +40,8 @@ create table if not exists public.website_services (
 create table if not exists public.website_store_items (
   id uuid primary key default gen_random_uuid(), created_at timestamptz not null default now(), updated_at timestamptz not null default now(),
   source_id text not null, source_table text not null check (source_table in ('vessels','assets','inventory_items')),
-  item_type text not null check (item_type in ('vessel','equipment','inventory')), title text not null, category text, summary text,
+  item_type text not null check (item_type in ('vessel','equipment','inventory')), title text not null, category text,
+  make text, model text, model_year integer, summary text,
   image_url text, condition text, location text, price_amount numeric(15,2), currency text not null default 'AED',
   price_label text default 'Price on request', stock_quantity numeric, sku text,
   purchasable boolean not null default false, max_order_quantity integer not null default 10,
