@@ -1,6 +1,6 @@
 # OSS Marine Website V4
 
-Complete responsive multi-page static website with optional Supabase CMS/admin integration.
+Production-ready responsive marine website with Supabase ERP publishing, administration, catalogue filtering and Stripe-hosted commerce.
 
 ## Included
 - Home
@@ -22,6 +22,9 @@ Complete responsive multi-page static website with optional Supabase CMS/admin i
 - Gallery image picker and Supabase media uploads
 - Collapsible product descriptions, persistent shopping cart and Stripe-hosted checkout
 - Store order and fulfillment management in the administration control centre
+- Clean extensionless URLs, canonical/Open Graph metadata and structured data
+- Accessible keyboard navigation, dialogs, tabs and live status feedback
+- Production security headers, long-lived asset caching and responsive image loading
 - `supabase/schema.sql`
 
 ## Supabase setup

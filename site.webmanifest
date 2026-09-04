@@ -2,8 +2,9 @@
   "name": "OSS Marine Services LLC",
   "short_name": "OSS Marine",
   "start_url": "/",
-  "display": "browser",
-  "background_color": "#061b2b",
-  "theme_color": "#061b2b",
+  "display": "standalone",
+  "background_color": "#edf4fb",
+  "theme_color": "#005f93",
+  "description": "Integrated marine, offshore, repair, fabrication, equipment and logistics support from Abu Dhabi.",
   "icons": [{"src":"/assets/oss-logo.png","sizes":"any","type":"image/png"}]
 }
