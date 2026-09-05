@@ -7,6 +7,19 @@
   if(header)header.innerHTML=`<a class="mc-logo" href="${href('')}" aria-label="OSS Marine home">${logo}</a><div class="mc-nav-shell" id="primary-navigation"><nav class="mc-nav" aria-label="Primary navigation">${links.map(([slug,label,key])=>`<a class="${section===key?'active':''}" ${section===key?'aria-current="page"':''} href="${href(slug)}">${label}</a>`).join('')}</nav></div><div class="mc-head-contact"><a class="mc-phone" href="tel:+971502606292">+971 50 260 6292</a><a class="mc-social" href="mailto:commercial@offshoresupportservices.ae" aria-label="Email OSS">✉</a></div><a class="mc-chat" href="${href('contact')}#rfq" aria-label="Send an enquiry"></a><button class="mc-menu" type="button" aria-label="Open menu" aria-controls="primary-navigation" aria-expanded="false"><i></i><i></i><i></i></button>`;
   const footer=document.querySelector('.mc-footer');
   if(footer)footer.innerHTML=`<div class="mc-wrap"><div class="mc-footer-grid"><div><a href="${href('')}" aria-label="OSS Marine home"><img class="mc-footer-logo" src="${base}assets/oss-logo.png" width="833" loading="lazy" decoding="async" alt="OSS Marine"></a><p>Integrated marine and industrial support from Abu Dhabi.</p></div><div><h3>Company</h3><a href="${href('about')}">Company</a><a href="${href('projects')}">Projects</a><a href="${href('hse')}">HSE & Quality</a></div><div><h3>Solutions</h3><a href="${href('services/vessel-charter')}">Vessel charter</a><a href="${href('services/ship-repair')}">Ship repair</a><a href="${href('services/fabrication')}">Fabrication</a><a href="${href('fleet')}">Fleet & equipment</a><a href="${href('store')}">Marine store</a></div><div><h3>Contact</h3><p>MW2, Mussafah Industrial City<br>Abu Dhabi, UAE</p><a href="tel:+971502606292">+971 50 260 6292</a><a href="mailto:commercial@offshoresupportservices.ae">commercial@offshoresupportservices.ae</a></div></div><div class="mc-footer-bottom"><p>© <span data-year></span> OSS Marine Services LLC</p><p><a href="${href('privacy')}">Privacy</a> · <a href="${href('terms')}">Terms</a></p></div></div>`;
+  let mobileBar=document.querySelector('.mobile-bar');if(!mobileBar){mobileBar=document.createElement('nav');mobileBar.className='mobile-bar';document.body.append(mobileBar)}
+  if(mobileBar){
+    const icons={
+      home:'<path d="M3 11.5 12 4l9 7.5M5.5 10v10h13V10M9.5 20v-6h5v6"/>',
+      services:'<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/>',
+      store:'<path d="M4 8h16l-1 12H5L4 8Zm3 0a5 5 0 0 1 10 0"/>',
+      fleet:'<path d="M3 16.5h18M5 16.5l2-7h10l2 7M9 9.5V5h6v4.5M6 20h.01M18 20h.01"/>',
+      contact:'<path d="M3 6h18v12H3zM4 7l8 6 8-6"/>'
+    };
+    const items=[['','Home','index','home'],['services','Solutions','services','services'],['store','Store','store','store'],['fleet','Fleet','fleet','fleet'],['contact','Contact','contact','contact']];
+    mobileBar.setAttribute('role','navigation');mobileBar.setAttribute('aria-label','Mobile navigation');
+    mobileBar.innerHTML=items.map(([slug,label,key,icon])=>`<a class="${key==='store'?'store':''} ${section===key?'active':''}" ${section===key?'aria-current="page"':''} href="${href(slug)}"><span><svg viewBox="0 0 24 24" aria-hidden="true">${icons[icon]}</svg></span><b>${label}</b></a>`).join('');
+  }
   document.querySelectorAll('[data-year]').forEach(node=>node.textContent=new Date().getFullYear());
   const menu=document.querySelector('.mc-menu'),navShell=document.querySelector('.mc-nav-shell');
   const setMenu=open=>{navShell?.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);menu?.setAttribute('aria-expanded',String(open));menu?.setAttribute('aria-label',open?'Close menu':'Open menu');if(open)navShell?.querySelector('a')?.focus()};
